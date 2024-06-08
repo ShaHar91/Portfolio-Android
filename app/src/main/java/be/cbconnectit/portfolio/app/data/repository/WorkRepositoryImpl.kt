@@ -29,6 +29,7 @@ class WorkRepositoryImpl(
     override suspend fun fetchAllWorks(): Result<List<Work>> {
         return try {
             val works = workApi.fetchAllWorks()
+
             transactionProvider.runAsTransaction {
                 workDao.insertMany(works.toEntities())
                 tagDao.insertMany(works.map { it.tags.toEntities() }.flatten())
@@ -36,6 +37,7 @@ class WorkRepositoryImpl(
                 val crossRefEntities = works.map { dto -> dto.tags.map { tag -> WorkTagCrossRefEntity(dto.id, tag.id) } }.flatten()
                 workTagCrossRefDao.insertMany(crossRefEntities)
             }
+
             Result.success(works.toWorks())
         } catch (exception: Exception) {
             Result.failure(exception)

@@ -10,7 +10,7 @@ class TestimonialApiImpl(
     private val client: RestApiBuilder
 ) : TestimonialApi {
     override suspend fun fetchAllTestimonials(): List<TestimonialDto> {
-        val call = client.api.get("testimonials.json")
+        val call = client.api.get("testimonials")
         val works = call.bodyAsText()
 
         return DefaultJson.decodeFromString(works)

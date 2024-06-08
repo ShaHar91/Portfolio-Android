@@ -21,17 +21,6 @@ data class WorkEntity(
     }
 }
 
-@Entity(TagEntity.ENTITY_NAME)
-data class TagEntity(
-    @PrimaryKey
-    val id: String,
-    val name: String
-) {
-    companion object {
-        const val ENTITY_NAME = "tag"
-    }
-}
-
 data class WorkWithTags(
     @Embedded
     val work: WorkEntity,

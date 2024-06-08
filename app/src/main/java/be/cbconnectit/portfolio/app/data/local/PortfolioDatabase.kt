@@ -29,7 +29,7 @@ import be.cbconnectit.portfolio.app.data.local.utils.Converters
         WorkTagCrossRefEntity::class,
         LinkEntity::class,
     ],
-    version = 1
+    version = 2
 )
 @TypeConverters(Converters::class)
 abstract class PortfolioDatabase : RoomDatabase() {

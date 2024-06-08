@@ -10,7 +10,7 @@ class ExperienceApiImpl(
     private val client: RestApiBuilder
 ): ExperienceApi {
     override suspend fun fetchAllExperiences(): List<ExperienceDto> {
-        val call = client.api.get("experiences.json")
+        val call = client.api.get("experiences")
         val experiences = call.bodyAsText()
 
         return DefaultJson.decodeFromString(experiences)

@@ -20,9 +20,3 @@ data class WorkDto(
     val tags: List<TagDto>
 ) : Parcelable
 
-@Parcelize
-@Serializable
-data class TagDto(
-    val id: String,
-    val name: String
-) : Parcelable

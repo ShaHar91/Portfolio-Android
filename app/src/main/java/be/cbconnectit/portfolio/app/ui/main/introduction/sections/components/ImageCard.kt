@@ -121,7 +121,7 @@ fun PortfolioCardPreview() {
             Column {
                 val service = Service.previewData()
                 ImageCard(
-                    image = service.image,
+                    image = service.imageUrl,
                     text = service.title,
                     body = service.description,
                     imgDescription = service.title
