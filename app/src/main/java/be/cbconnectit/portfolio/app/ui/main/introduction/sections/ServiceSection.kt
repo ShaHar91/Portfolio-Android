@@ -41,8 +41,8 @@ fun ServiceSection(
             modifier = Modifier.padding(start = 24.dp, end = 12.dp),
             title = stringResource(R.string.service),
             subtitle = stringResource(R.string.service_subtitle),
-            actionText = stringResource(R.string.see_more),
-            actionClicked = actionClicked
+//            actionText = stringResource(R.string.see_more),
+//            actionClicked = actionClicked
         )
 
         Spacer(modifier = Modifier.height(24.dp))
