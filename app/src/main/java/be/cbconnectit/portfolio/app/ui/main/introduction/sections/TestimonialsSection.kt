@@ -41,8 +41,8 @@ fun TestimonialsSection(
             modifier = Modifier.padding(start = 24.dp, end = 12.dp),
             title = stringResource(R.string.testimonials),
             subtitle = stringResource(R.string.what_they_say),
-            actionText = stringResource(R.string.see_more),
-            actionClicked = actionClicked
+//            actionText = stringResource(R.string.see_more),
+//            actionClicked = actionClicked,
         )
 
         Spacer(modifier = Modifier.height(24.dp))
