@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import be.cbconnectit.portfolio.app.data.local.daos.CompanyDao
 import be.cbconnectit.portfolio.app.data.local.daos.ExperienceDao
+import be.cbconnectit.portfolio.app.data.local.daos.ExperienceTagCrossRefDao
 import be.cbconnectit.portfolio.app.data.local.daos.JobPositionDao
 import be.cbconnectit.portfolio.app.data.local.daos.LinkDao
 import be.cbconnectit.portfolio.app.data.local.daos.ServiceDao
@@ -15,6 +16,7 @@ import be.cbconnectit.portfolio.app.data.local.daos.WorkLinkCrossRefDao
 import be.cbconnectit.portfolio.app.data.local.daos.WorkTagCrossRefDao
 import be.cbconnectit.portfolio.app.data.local.entities.CompanyEntity
 import be.cbconnectit.portfolio.app.data.local.entities.ExperienceEntity
+import be.cbconnectit.portfolio.app.data.local.entities.ExperienceTagCrossRefEntity
 import be.cbconnectit.portfolio.app.data.local.entities.JobPositionEntity
 import be.cbconnectit.portfolio.app.data.local.entities.LinkEntity
 import be.cbconnectit.portfolio.app.data.local.entities.ServiceEntity
@@ -35,10 +37,11 @@ import be.cbconnectit.portfolio.app.data.local.utils.Converters
         WorkTagCrossRefEntity::class,
         WorkLinkCrossRefEntity::class,
         LinkEntity::class,
-    CompanyEntity::class,
-    JobPositionEntity::class
+        CompanyEntity::class,
+        JobPositionEntity::class,
+        ExperienceTagCrossRefEntity::class
     ],
-    version = 5
+    version = 6
 )
 @TypeConverters(Converters::class)
 abstract class PortfolioDatabase : RoomDatabase() {
@@ -53,4 +56,5 @@ abstract class PortfolioDatabase : RoomDatabase() {
     abstract val linkDao: LinkDao
     abstract val companyDao: CompanyDao
     abstract val jobPositionDao: JobPositionDao
+    abstract val experienceTagCrossRefDao: ExperienceTagCrossRefDao
 }

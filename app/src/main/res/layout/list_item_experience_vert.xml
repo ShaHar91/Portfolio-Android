@@ -65,7 +65,7 @@
                 android:ellipsize="end"
                 android:gravity="start"
                 android:maxLines="1"
-                android:text="@{item.jobPosition}"
+                android:text="@{item.jobPosition.name}"
                 android:textAppearance="?textAppearanceTitleLarge"
                 android:textColor="?colorPrimary"
                 android:textStyle="bold"
@@ -92,7 +92,7 @@
                 android:ellipsize="end"
                 android:gravity="start"
                 android:maxLines="1"
-                android:text="@{item.company}"
+                android:text="@{item.company.name}"
                 android:textAppearance="?textAppearanceBodyMedium"
                 android:textColor="?colorOnSurface"
                 tools:text="Wisemen (formerly Appwise)" />

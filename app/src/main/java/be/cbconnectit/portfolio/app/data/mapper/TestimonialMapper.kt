@@ -11,7 +11,7 @@ fun TestimonialEntity.toTestimonial() = Testimonial(
     imageUrl,
     fullName,
     Company("", "", emptyList(), "", ""),
-    JobPosition("", "", "", ""), //TODO: get it from a relation through Room
+    JobPosition("", "", "", ""),
     review,
     createdAt,
     updatedAt

@@ -16,6 +16,7 @@ import be.cbconnectit.portfolio.app.data.mapper.toLinkEntity
 import be.cbconnectit.portfolio.app.data.mapper.toTestimonial
 import be.cbconnectit.portfolio.app.data.mapper.toTestimonials
 import be.cbconnectit.portfolio.app.data.remote.api.TestimonialApi
+import be.cbconnectit.portfolio.app.data.utils.TransactionProvider
 import be.cbconnectit.portfolio.app.domain.model.Testimonial
 import be.cbconnectit.portfolio.app.domain.repository.TestimonialRepository
 import kotlinx.coroutines.flow.map
@@ -25,27 +26,31 @@ class TestimonialRepositoryImpl(
     private val testimonialDao: TestimonialDao,
     private val companyDao: CompanyDao,
     private val linkDao: LinkDao,
-    private val jobPositionDao: JobPositionDao
+    private val jobPositionDao: JobPositionDao,
+    private val transactionProvider: TransactionProvider
 ) : TestimonialRepository {
 
     override suspend fun fetchAllTestimonials(): Result<List<Testimonial>> {
         return try {
             val testimonials = testimonialApi.fetchAllTestimonials()
-            testimonialDao.insertMany(testimonials.toEntities())
 
-            val links = mutableListOf<LinkEntity>()
-            val companies = mutableListOf<CompanyEntity>()
-            val jobPositions = mutableListOf<JobPositionEntity>()
+            transactionProvider.runAsTransaction {
+                testimonialDao.insertMany(testimonials.toEntities())
 
-            testimonials.forEach { item ->
-                links.addAll(item.company.links.map { it.toLinkEntity() })
-                companies.add(item.company.toCompanyEntity())
-                jobPositions.add(item.jobPosition.toJobPositionEntity())
+                val links = mutableListOf<LinkEntity>()
+                val companies = mutableListOf<CompanyEntity>()
+                val jobPositions = mutableListOf<JobPositionEntity>()
+
+                testimonials.forEach { item ->
+                    links.addAll(item.company.links.map { it.toLinkEntity() })
+                    companies.add(item.company.toCompanyEntity())
+                    jobPositions.add(item.jobPosition.toJobPositionEntity())
+                }
+
+                linkDao.insertMany(links)
+                companyDao.insertMany(companies)
+                jobPositionDao.insertMany(jobPositions)
             }
-
-            linkDao.insertMany(links)
-            companyDao.insertMany(companies)
-            jobPositionDao.insertMany(jobPositions)
 
             Result.success(testimonials.toTestimonials())
         } catch (exception: Exception) {

@@ -28,7 +28,7 @@
             android:ellipsize="end"
             android:gravity="center_horizontal"
             android:maxLines="1"
-            android:text="@{item.jobPosition}"
+            android:text="@{item.jobPosition.name}"
             android:textAppearance="?textAppearanceTitleLarge"
             android:textColor="?colorPrimary"
             android:textStyle="bold"
@@ -53,7 +53,7 @@
             android:ellipsize="end"
             android:gravity="center_horizontal"
             android:maxLines="1"
-            android:text="@{item.company}"
+            android:text="@{item.company.name}"
             android:textAppearance="?textAppearanceBodyMedium"
             android:textColor="?colorOnSurface"
             tools:text="Wisemen (formerly Appwise)" />
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:gravity="center_horizontal"
-                android:text="@{item.shortDescription}"
+                android:text="@{item.description}"
                 tools:text="Lorum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>

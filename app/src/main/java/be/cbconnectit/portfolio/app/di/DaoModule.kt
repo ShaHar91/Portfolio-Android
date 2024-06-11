@@ -14,4 +14,5 @@ val daoModule = module {
     single { get<PortfolioDatabase>().linkDao }
     single { get<PortfolioDatabase>().companyDao }
     single { get<PortfolioDatabase>().jobPositionDao }
+    single { get<PortfolioDatabase>().experienceTagCrossRefDao }
 }

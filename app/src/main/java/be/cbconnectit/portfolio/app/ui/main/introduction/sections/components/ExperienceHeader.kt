@@ -39,7 +39,7 @@ fun ExperienceHeader(
             style = typography.titleLarge.copy(fontWeight = FontWeight.Bold, color = colorScheme.primary),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            text = experience.jobPosition
+            text = experience.jobPosition.name
         )
 
         Spacer(modifier = Modifier.height(4.dp))
@@ -61,7 +61,7 @@ fun ExperienceHeader(
             style = typography.bodyLarge,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            text = experience.company
+            text = experience.company.name
         )
     }
 }

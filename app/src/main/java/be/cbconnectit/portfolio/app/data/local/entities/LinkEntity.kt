@@ -1,9 +1,9 @@
 package be.cbconnectit.portfolio.app.data.local.entities
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import be.cbconnectit.portfolio.app.domain.enums.LinkType
-import kotlinx.serialization.SerialName
 
 @Entity(tableName = LinkEntity.ENTITY_NAME)
 data class LinkEntity(
@@ -11,9 +11,9 @@ data class LinkEntity(
     val id: String,
     val url: String,
     val type: LinkType,
-    @SerialName("created_at")
+    @ColumnInfo("created_at")
     val createdAt: String,
-    @SerialName("updated_at")
+    @ColumnInfo("updated_at")
     val updatedAt: String
 ) {
     companion object {

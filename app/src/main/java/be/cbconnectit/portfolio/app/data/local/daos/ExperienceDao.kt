@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import be.cbconnectit.portfolio.app.data.local.entities.ExperienceEntity
+import be.cbconnectit.portfolio.app.data.local.entities.ExperienceWithRelations
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -14,5 +15,5 @@ interface ExperienceDao {
     suspend fun insertMany(experiences: List<ExperienceEntity>)
 
     @Query("SELECT * FROM experience")
-    fun findAllFlow(): Flow<List<ExperienceEntity>>
+    fun findAllFlow(): Flow<List<ExperienceWithRelations>>
 }

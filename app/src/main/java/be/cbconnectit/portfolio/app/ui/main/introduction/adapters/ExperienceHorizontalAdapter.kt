@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import be.cbconnectit.portfolio.app.databinding.ItemTechStackBinding
 import be.cbconnectit.portfolio.app.databinding.ListItemExperienceBinding
 import be.cbconnectit.portfolio.app.domain.model.Experience
+import be.cbconnectit.portfolio.app.domain.model.getIconForTechStack
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.R as MaterialR
 
@@ -58,14 +59,14 @@ class ExperienceHorizontalAdapter : ListAdapter<Experience, ExperienceHorizontal
 
             binding.llTechStackWrapper.removeAllViews()
 
-            item.techStacks.forEach {
+            item.tags.forEach {
                 val view = ItemTechStackBinding.inflate(LayoutInflater.from(binding.root.context), binding.llTechStackWrapper, false)
                 view.ivTechStack.updateLayoutParams {
                     val some = 5 * view.root.resources.displayMetrics.density
                     (this as? MarginLayoutParams)?.setMargins(some.toInt(), 0, some.toInt(), 0)
                 }
                 view.root.id = View.generateViewId()
-                view.ivTechStack.setImageResource(it.iconRes)
+                view.ivTechStack.setImageResource(it.getIconForTechStack())
                 view.isCurrent = isCurrent
                 binding.llTechStackWrapper.addView(view.root)
             }
