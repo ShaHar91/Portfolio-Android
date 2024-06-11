@@ -3,7 +3,9 @@ package be.cbconnectit.portfolio.app.data.repository
 import be.cbconnectit.portfolio.app.data.local.daos.ServiceDao
 import be.cbconnectit.portfolio.app.data.local.daos.TagDao
 import be.cbconnectit.portfolio.app.data.mapper.toEntities
+import be.cbconnectit.portfolio.app.data.mapper.toService
 import be.cbconnectit.portfolio.app.data.mapper.toServices
+import be.cbconnectit.portfolio.app.data.mapper.toTag
 import be.cbconnectit.portfolio.app.data.mapper.toTagEntity
 import be.cbconnectit.portfolio.app.data.remote.api.ServiceApi
 import be.cbconnectit.portfolio.app.data.utils.TransactionProvider
@@ -38,5 +40,5 @@ class ServiceRepositoryImpl(
         }
     }
 
-    override fun findAllServices() = serviceDao.findAllFlow().map { it.toServices() }
+    override fun findAllServices(parentServiceId: String?) = serviceDao.findAllFlow(parentServiceId).map { it.map { serviceWithTags -> serviceWithTags.service.toService().copy(tag = serviceWithTags.tag?.toTag()) } }
 }

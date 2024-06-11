@@ -1,8 +1,10 @@
 package be.cbconnectit.portfolio.app.data.local.entities
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 import kotlinx.serialization.SerialName
 
 @Entity(ServiceEntity.ENTITY_NAME)
@@ -31,3 +33,10 @@ data class ServiceEntity(
         const val ENTITY_NAME = "service"
     }
 }
+
+data class ServiceWithTags(
+    @Embedded
+    val service: ServiceEntity,
+    @Relation(parentColumn = "tagId", entityColumn = "id")
+    val tag: TagEntity?
+)

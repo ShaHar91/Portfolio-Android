@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface ServiceRepository {
     suspend fun fetchAllServices(): Result<List<Service>>
 
-    fun findAllServices(): Flow<List<Service>>
+    fun findAllServices(parentServiceId: String? = null): Flow<List<Service>>
 }
