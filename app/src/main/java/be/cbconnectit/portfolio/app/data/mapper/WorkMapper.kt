@@ -8,35 +8,41 @@ import be.cbconnectit.portfolio.app.domain.model.Work
 
 fun WorkEntity.toWork(links: List<Link> = emptyList(), tags: List<Tag> = emptyList()) = Work(
     id,
-    bannerImage,
-    image,
+    bannerImageUrl,
+    imageUrl,
     title,
     shortDescription,
     description,
     links,
-    tags
+    tags,
+    createdAt,
+    updatedAt
 )
 
 fun List<WorkEntity>.toWorks() = this.map { it.toWork() }
 
 fun WorkDto.toWork() = Work(
     id,
-    bannerImage,
-    image,
+    bannerImageUrl,
+    imageUrl,
     title,
     shortDescription,
     description,
     links.toLinks(),
-    tags.toTags()
+    tags.toTags(),
+    createdAt,
+    updatedAt
 )
 
 fun WorkDto.toWorkEntity() = WorkEntity(
     id,
-    bannerImage,
-    image,
+    bannerImageUrl,
+    imageUrl,
     title,
     shortDescription,
     description,
+    createdAt,
+    updatedAt
 )
 
 fun List<WorkDto>.toEntities() = this.map { it.toWorkEntity() }

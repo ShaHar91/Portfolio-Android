@@ -65,9 +65,9 @@ fun TestimonialsSection(
                     modifier = minimumHeightStateModifier
                         .fillParentMaxWidth()
                         .padding(horizontal = 8.dp),
-                    image = it.image,
+                    image = it.imageUrl,
                     name = it.fullName,
-                    function = it.function,
+                    function = it.jobPosition.name,
                     review = it.review
                 )
             }

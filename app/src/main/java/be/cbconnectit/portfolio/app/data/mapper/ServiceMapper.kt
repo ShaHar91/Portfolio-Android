@@ -6,27 +6,52 @@ import be.cbconnectit.portfolio.app.domain.model.Service
 
 fun ServiceEntity.toService() = Service(
     id,
-    image,
+    imageUrl,
     title,
-    description
+    shortDescription,
+    description,
+    bannerDescription,
+    null, // TODO: add the correct relations
+    extraInfo,
+    null, // TODO: add the correct relations
+    createdAt,
+    updatedAt
 )
 
-fun List<ServiceEntity>.toServices()= this.map { it.toService() }
+fun List<ServiceEntity>.toServices() = this.map { it.toService() }
 
 fun ServiceDto.toService() = Service(
     id,
-    image,
+    imageUrl,
     title,
-    description
+    shortDescription,
+    description,
+    bannerDescription,
+    subServices?.toServices(),
+    extraInfo,
+    tag?.toTag(),
+    createdAt,
+    updatedAt
 )
 
-fun ServiceDto.toServiceEntity() = ServiceEntity(
+fun ServiceDto.toServiceEntity(parentId: String?) = ServiceEntity(
     id,
-    image,
+    imageUrl,
     title,
-    description
+    shortDescription,
+    description,
+    bannerDescription,
+    parentId,
+    extraInfo,
+    tag?.id,
+    createdAt,
+    updatedAt
 )
 
-fun List<ServiceDto>.toEntities() = this.map { it.toServiceEntity() }
+fun List<ServiceDto>.toEntities() = this.flatMap { parentService ->
+    listOfNotNull(parentService.toServiceEntity(null))
+        .plus(parentService.subServices.orEmpty().map { it.toServiceEntity(parentService.id) })
+}
+
 @JvmName("dtoToServices")
-fun List<ServiceDto>.toServices() = this.map { it.toService() }
+fun List<ServiceDto>.toServices(): List<Service> = this.map { it.toService() }

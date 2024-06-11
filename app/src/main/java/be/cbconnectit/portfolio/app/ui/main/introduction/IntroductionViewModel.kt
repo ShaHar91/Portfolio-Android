@@ -34,7 +34,7 @@ class IntroductionViewModel(
 
     private val _state = MutableStateFlow(
         IntroductionState(
-            socialLinks = Social.values().map { Link(it.type, it.link) },
+            socialLinks = Social.entries.map { Link(type = it.type, url=  it.link) },
             experienceInYears = getUpdateExperienceInYears()
         )
     )

@@ -90,7 +90,7 @@ android {
             dimension = "env"
 
             resValue("string","app_name","CB connect IT Portfolio Dev")
-            buildConfigField("String", "API_BASE_URL", "\"https://raw.githubusercontent.com/ShaHar91/Portfolio/master/public/api/dev/\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://www.cb-connect-it.com/api/v1/\"")
         }
 
         create("qa") {
@@ -99,7 +99,7 @@ android {
             dimension = "env"
 
             resValue("string","app_name","CB connect IT Portfolio Test")
-            buildConfigField("String", "API_BASE_URL", "\"https://raw.githubusercontent.com/ShaHar91/Portfolio/master/public/api/qa/\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://www.cb-connect-it.com/api/v1/\"")
         }
 
         create("staging") {
@@ -108,14 +108,14 @@ android {
             dimension = "env"
 
             resValue("string","app_name","CB connect IT Portfolio Staging")
-            buildConfigField("String", "API_BASE_URL", "\"https://raw.githubusercontent.com/ShaHar91/Portfolio/master/public/api/staging/\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://www.cb-connect-it.com/api/v1/\"")
         }
 
         create("production") {
             dimension = "env"
 
             resValue("string","app_name","CB connect IT Portfolio")
-            buildConfigField("String", "API_BASE_URL", "\"https://raw.githubusercontent.com/ShaHar91/Portfolio/master/public/api/prod/\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://www.cb-connect-it.com/api/v1/\"")
         }
     }
 }

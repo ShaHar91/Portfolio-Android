@@ -9,20 +9,19 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class WorkDto(
     val id: String,
-    @SerialName("banner_image")
-    val bannerImage: String,
-    val image: String,
+    @SerialName("banner_image_url")
+    val bannerImageUrl: String,
+    @SerialName("image_url")
+    val imageUrl: String,
     val title: String,
     @SerialName("short_description")
     val shortDescription: String,
     val description: String,
     val links: List<LinkDto>,
-    val tags: List<TagDto>
+    val tags: List<TagDto>,
+    @SerialName("created_at")
+    val createdAt: String,
+    @SerialName("updated_at")
+    val updatedAt: String
 ) : Parcelable
 
-@Parcelize
-@Serializable
-data class TagDto(
-    val id: String,
-    val name: String
-) : Parcelable

@@ -22,7 +22,7 @@ class ServiceAdapter : ListAdapter<Service, ServiceAdapter.ServiceViewHolder>(Se
         fun bind(item: Service) {
             binding.service = item
 
-            binding.ivBanner.load(item.image)
+            binding.ivBanner.load(item.imageUrl)
         }
     }
 }

@@ -121,7 +121,7 @@ fun PortfolioCardPreview() {
             Column {
                 val service = Service.previewData()
                 ImageCard(
-                    image = service.image,
+                    image = service.imageUrl,
                     text = service.title,
                     body = service.description,
                     imgDescription = service.title
@@ -129,7 +129,7 @@ fun PortfolioCardPreview() {
                 Spacer(modifier = Modifier.height(20.dp))
                 val portfolio = Work.previewData()
                 ImageCard(
-                    image = portfolio.bannerImage,
+                    image = portfolio.bannerImageUrl,
                     text = portfolio.title,
                     body = "Created this library in order to streamline and simplify the setup of new projects. Instead of copying a lot of classes and reimplementing it differently each time a single dependency was all we needed.",
                     imgDescription = portfolio.title,

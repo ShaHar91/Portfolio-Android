@@ -22,7 +22,7 @@ class TestimonialAdapter : ListAdapter<Testimonial, TestimonialAdapter.Testimoni
         fun bind(item: Testimonial) {
             binding.item = item
 
-            binding.ivBanner.load(item.image)
+            binding.ivBanner.load(item.imageUrl)
         }
     }
 }

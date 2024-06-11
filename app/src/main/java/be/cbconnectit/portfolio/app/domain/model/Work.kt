@@ -1,20 +1,21 @@
 package be.cbconnectit.portfolio.app.domain.model
 
 import androidx.recyclerview.widget.DiffUtil
-import be.cbconnectit.portfolio.app.domain.enums.LinkType
 
 data class Work(
     val id: String,
-    val bannerImage: String,
-    val image: String,
+    val bannerImageUrl: String,
+    val imageUrl: String,
     val title: String,
     val shortDescription: String,
     val description: String,
     val links: List<Link>,
-    val tags: List<Tag>
+    val tags: List<Tag>,
+    val createdAt: String,
+    val updatedAt: String
 ) {
     companion object {
-         val WORK_DIFF = object : DiffUtil.ItemCallback<Work>() {
+        val WORK_DIFF = object : DiffUtil.ItemCallback<Work>() {
             override fun areItemsTheSame(oldItem: Work, newItem: Work): Boolean {
                 return oldItem.id == newItem.id
             }
@@ -24,13 +25,6 @@ data class Work(
             }
         }
     }
-}
-
-data class Tag(
-    val id: String,
-    val name: String
-) {
-    companion object
 }
 
 
@@ -49,8 +43,10 @@ Also the network layer had a complete makeover to add a (streamlined) default wa
 The library was comprised out of different modules. For example, there was the actual Core module, then we had the Networking module with retrofit usability. Besides that we also had modules for local data, starting with Realm which was Deprecated in favor of Room after a couple of versions.
 
 Check the Github for more information and a sample!""",
-    listOf(Link(LinkType.Github,"")),
-    listOf(Tag("1", "Coroutines"), Tag("2", "Kotlin"))
+    links = listOf(Link.previewData()),
+    tags = listOf(Tag.previewData()),
+    createdAt = "",
+    updatedAt = ""
 )
 
-fun Tag.Companion.previewData() = Tag("1", "Kotlin")
+fun Tag.Companion.previewData() = Tag("1", "Kotlin", "kotlin", "", "")

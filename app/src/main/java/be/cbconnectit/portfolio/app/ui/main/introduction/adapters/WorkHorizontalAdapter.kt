@@ -24,7 +24,7 @@ class WorkHorizontalAdapter : ListAdapter<Work, WorkHorizontalAdapter.WorkViewHo
         fun bind(item: Work) {
             binding.item = item
 
-            binding.ivBanner.load(item.bannerImage)
+            binding.ivBanner.load(item.bannerImageUrl)
 
             val viewIds = item.tags.map {
                 val view = ItemTagBinding.inflate(LayoutInflater.from(binding.root.context), binding.flowTags.parent as ViewGroup, false)

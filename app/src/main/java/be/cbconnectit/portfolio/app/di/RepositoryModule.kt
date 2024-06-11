@@ -11,8 +11,8 @@ import be.cbconnectit.portfolio.app.domain.repository.WorkRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single<ServiceRepository> { ServiceRepositoryImpl(get(), get()) }
-    single<WorkRepository> { WorkRepositoryImpl(get(), get(), get(), get(), get(),get()) }
-    single<TestimonialRepository> { TestimonialRepositoryImpl(get(), get()) }
-    single<ExperienceRepository> { ExperienceRepositoryImpl(get(), get()) }
+    single<ServiceRepository> { ServiceRepositoryImpl(get(), get(), get(), get()) }
+    single<WorkRepository> { WorkRepositoryImpl(get(), get(), get(), get(), get(), get(), get()) }
+    single<TestimonialRepository> { TestimonialRepositoryImpl(get(), get(), get(), get(), get(), get()) }
+    single<ExperienceRepository> { ExperienceRepositoryImpl(get(), get(), get(), get(), get(), get(), get(), get()) }
 }

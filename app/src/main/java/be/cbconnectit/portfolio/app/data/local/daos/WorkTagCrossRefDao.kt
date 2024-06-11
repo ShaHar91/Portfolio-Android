@@ -13,8 +13,4 @@ import kotlinx.coroutines.flow.Flow
 interface WorkTagCrossRefDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMany(crossRefList: List<WorkTagCrossRefEntity>)
-
-    @Transaction
-    @Query("SELECT * FROM work")
-    fun findAllWorksWithTags(): Flow<List<WorkWithTags>>
 }

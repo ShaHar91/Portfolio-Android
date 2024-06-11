@@ -76,7 +76,7 @@ fun MainSection(
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.Start),
-            links = Social.values().map { Link(it.type, it.link) },
+            links = Social.entries.map { Link(type = it.type, url = it.link) },
             onClick = onClick
         )
 

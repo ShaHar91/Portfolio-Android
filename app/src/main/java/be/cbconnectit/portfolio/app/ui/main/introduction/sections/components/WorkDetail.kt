@@ -71,7 +71,7 @@ fun WorkDetail(
             ) {
                 AsyncImage(
                     modifier = Modifier.aspectRatio(1f),
-                    model = work.image,
+                    model = work.imageUrl,
                     contentDescription = work.title
                 )
 

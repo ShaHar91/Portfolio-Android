@@ -47,7 +47,7 @@ fun ExperienceItem(
 
             TechStacksCollection(
                 modifier = Modifier.fillMaxWidth(),
-                techStacks = experience.techStacks,
+                tags = experience.tags,
                 active = active,
                 horizontal = true
             )
@@ -64,14 +64,14 @@ fun ExperienceItem(
                     maxLines = maxLines,
                     overflow = TextOverflow.Ellipsis,
                     textAlign = TextAlign.Center,
-                    text = experience.shortDescription
+                    text = experience.description
                 )
             }
         }
     } else {
         Row(modifier = modifier.height(IntrinsicSize.Min)) {
             TechStacksCollection(
-                techStacks = experience.techStacks,
+                tags = experience.tags,
                 active = active,
                 horizontal = false
             )

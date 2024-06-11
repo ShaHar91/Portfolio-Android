@@ -66,11 +66,11 @@ fun ServiceSection(
                     minimumHeightStateModifier
                         .fillParentMaxWidth()
                         .padding(horizontal = 8.dp),
-                    it.image,
+                    it.imageUrl,
                     it.title,
                     it.title,
                     it.description,
-                    5, 
+                    5,
                     RoundedCornerShape(20.dp, 20.dp, 0.dp, 20.dp)
                 )
             }
@@ -84,7 +84,7 @@ fun ServiceSection(
 fun ServiceSectionPreview() {
     PortfolioTheme {
         Surface {
-            ServiceSection(listOf(Service("", "", "", ""))) { }
+            ServiceSection(listOf(Service("", "", "", "", description = "", updatedAt = "", createdAt = ""))) { }
         }
     }
 }

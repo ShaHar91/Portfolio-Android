@@ -34,7 +34,7 @@ class WorkVerticalAdapter(
             binding.item = item
             binding.imageStartAligned = position % 2 == 0
 
-            binding.ivStartImage.load(item.image)
+            binding.ivStartImage.load(item.imageUrl)
 
             // <editor-fold desc="Dynamic tags">
             val flow = binding.clFlow.children.first()

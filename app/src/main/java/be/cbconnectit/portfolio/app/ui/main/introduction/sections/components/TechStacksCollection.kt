@@ -21,14 +21,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import be.cbconnectit.portfolio.app.domain.enums.TechStack
+import be.cbconnectit.portfolio.app.domain.model.Tag
+import be.cbconnectit.portfolio.app.domain.model.getIconForTechStack
 import be.cbconnectit.portfolio.app.extensions.thenIf
 import be.cbconnectit.portfolio.app.ui.theme.PortfolioTheme
 
 @Composable
 fun TechStacksCollection(
     modifier: Modifier = Modifier,
-    techStacks: List<TechStack> = emptyList(),
+    tags: List<Tag> = emptyList(),
     active: Boolean = false,
     horizontal: Boolean = true
 ) {
@@ -39,7 +40,7 @@ fun TechStacksCollection(
         ) {
             contentForCollection(
                 modifier = Modifier.weight(1f),
-                techStacks,
+                tags,
                 active,
                 true
             )
@@ -51,7 +52,7 @@ fun TechStacksCollection(
         ) {
             contentForCollection(
                 modifier = Modifier.weight(1f),
-                techStacks,
+                tags,
                 active,
                 false
             )
@@ -62,7 +63,7 @@ fun TechStacksCollection(
 @Composable
 private fun contentForCollection(
     modifier: Modifier = Modifier,
-    techStacks: List<TechStack> = emptyList(),
+    tags: List<Tag> = emptyList(),
     active: Boolean = false,
     horizontal: Boolean = true
 ) {
@@ -86,16 +87,17 @@ private fun contentForCollection(
         horizontal = horizontal,
         active = active
     ) {
-        techStacks.forEachIndexed { index, techStack ->
+        tags.forEachIndexed { index, tag ->
             if (index != 0) {
                 Spacer(modifier = Modifier
                     .thenIf(horizontal) { Modifier.width(10.dp) }
                     .thenIf(!horizontal) { Modifier.height(10.dp) }
                 )
             }
+
             Icon(
                 tint = if (active) colorScheme.onPrimary else colorScheme.primary,
-                painter = painterResource(id = techStack.iconRes),
+                painter = painterResource(id = tag.getIconForTechStack()),
                 contentDescription = ""
             )
         }
@@ -152,14 +154,14 @@ fun TechStacksCollectionPreview() {
     PortfolioTheme {
         Surface {
             Column {
-                TechStacksCollection(techStacks = TechStack.values().toList())
+                TechStacksCollection(tags = listOf(Tag("", "Android", "android", "", ""), Tag("", "Android TV", "android-tv", "", "")))
                 Spacer(modifier = Modifier.height(20.dp))
-                TechStacksCollection(techStacks = TechStack.values().toList(), active = true)
+                TechStacksCollection(tags = listOf(Tag("", "Android", "android", "", ""), Tag("", "Android TV", "android-tv", "", "")), active = true)
                 Spacer(modifier = Modifier.height(10.dp))
                 Row(modifier = Modifier.height(300.dp)) {
-                    TechStacksCollection(techStacks = TechStack.values().toList(), active = true, horizontal = false)
+                    TechStacksCollection(tags = listOf(Tag("", "Android", "android", "", ""), Tag("", "Android TV", "android-tv", "", "")), active = true, horizontal = false)
                     Spacer(modifier = Modifier.width(20.dp))
-                    TechStacksCollection(techStacks = TechStack.values().toList(), active = true, horizontal = false)
+                    TechStacksCollection(tags = listOf(Tag("", "Android", "android", "", ""), Tag("", "Android TV", "android-tv", "", "")), active = true, horizontal = false)
                 }
             }
         }

@@ -88,7 +88,7 @@ fun TestimonialCardPreview() {
     PortfolioTheme {
         Surface {
             val testimonial = Testimonial.previewData()
-            TestimonialCard(image = testimonial.image, name = testimonial.fullName, function = testimonial.function, review = testimonial.review)
+            TestimonialCard(image = testimonial.imageUrl, name = testimonial.fullName, function = testimonial.jobPosition.name, review = testimonial.review)
         }
     }
 }
