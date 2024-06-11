@@ -9,6 +9,7 @@ import be.cbconnectit.portfolio.app.data.local.daos.ServiceDao
 import be.cbconnectit.portfolio.app.data.local.daos.TagDao
 import be.cbconnectit.portfolio.app.data.local.daos.TestimonialDao
 import be.cbconnectit.portfolio.app.data.local.daos.WorkDao
+import be.cbconnectit.portfolio.app.data.local.daos.WorkLinkCrossRefDao
 import be.cbconnectit.portfolio.app.data.local.daos.WorkTagCrossRefDao
 import be.cbconnectit.portfolio.app.data.local.entities.ExperienceEntity
 import be.cbconnectit.portfolio.app.data.local.entities.LinkEntity
@@ -16,6 +17,7 @@ import be.cbconnectit.portfolio.app.data.local.entities.ServiceEntity
 import be.cbconnectit.portfolio.app.data.local.entities.TagEntity
 import be.cbconnectit.portfolio.app.data.local.entities.TestimonialEntity
 import be.cbconnectit.portfolio.app.data.local.entities.WorkEntity
+import be.cbconnectit.portfolio.app.data.local.entities.WorkLinkCrossRefEntity
 import be.cbconnectit.portfolio.app.data.local.entities.WorkTagCrossRefEntity
 import be.cbconnectit.portfolio.app.data.local.utils.Converters
 
@@ -27,9 +29,10 @@ import be.cbconnectit.portfolio.app.data.local.utils.Converters
         WorkEntity::class,
         TagEntity::class,
         WorkTagCrossRefEntity::class,
+        WorkLinkCrossRefEntity::class,
         LinkEntity::class,
     ],
-    version = 2
+    version = 4
 )
 @TypeConverters(Converters::class)
 abstract class PortfolioDatabase : RoomDatabase() {
@@ -40,5 +43,6 @@ abstract class PortfolioDatabase : RoomDatabase() {
     abstract val workDao: WorkDao
     abstract val tagDao: TagDao
     abstract val workTagCrossRefDao: WorkTagCrossRefDao
+    abstract val workLinkCrossRefDao: WorkLinkCrossRefDao
     abstract val linkDao: LinkDao
 }

@@ -65,7 +65,7 @@ fun PortfolioSection(
                     minimumHeightStateModifier
                         .fillParentMaxWidth()
                         .padding(horizontal = 8.dp),
-                    it.bannerImage,
+                    it.bannerImageUrl,
                     it.title,
                     it.title,
                     it.shortDescription,

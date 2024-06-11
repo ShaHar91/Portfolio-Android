@@ -61,7 +61,7 @@ fun LinkBar(
 fun LinkBarPreview() {
     PortfolioTheme {
         Surface {
-            LinkBar(links = Social.values().map { Link(it.type, it.link) }) {}
+            LinkBar(links = Social.entries.map { Link(type = it.type, url = it.link) }) {}
         }
     }
 }

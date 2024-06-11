@@ -5,24 +5,32 @@ import be.cbconnectit.portfolio.app.data.remote.dto.LinkDto
 import be.cbconnectit.portfolio.app.domain.model.Link
 
 fun LinkEntity.toLink() = Link(
+    id,
+    url,
     type,
-    url
+    createdAt,
+    updatedAt
 )
 
 fun List<LinkEntity>.toLinks() = this.map { it.toLink() }
 
 fun LinkDto.toLink() = Link(
+    id,
+    url,
     type,
-    url
+    createdAt,
+    updatedAt
 )
 
-fun LinkDto.toLinkEntity(workId: String)= LinkEntity(
-    workId = workId,
-    type = type,
-    url = url
+fun LinkDto.toLinkEntity() = LinkEntity(
+    id,
+    url,
+    type,
+    createdAt,
+    updatedAt
 )
 
-fun List<LinkDto>.toEntities(workId: String) = this.map { it.toLinkEntity(workId) }
+fun List<LinkDto>.toEntities() = this.map { it.toLinkEntity() }
 
 @JvmName("dtoToLinks")
 fun List<LinkDto>.toLinks() = this.map { it.toLink() }

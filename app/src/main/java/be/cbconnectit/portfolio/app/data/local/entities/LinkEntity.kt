@@ -1,17 +1,20 @@
 package be.cbconnectit.portfolio.app.data.local.entities
 
 import androidx.room.Entity
-import androidx.room.Index
 import androidx.room.PrimaryKey
 import be.cbconnectit.portfolio.app.domain.enums.LinkType
+import kotlinx.serialization.SerialName
 
-@Entity(tableName = LinkEntity.ENTITY_NAME, indices = [Index(unique = true, value = ["workId", "type"])])
+@Entity(tableName = LinkEntity.ENTITY_NAME)
 data class LinkEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long? = null,
-    val workId: String,
+    @PrimaryKey
+    val id: String,
+    val url: String,
     val type: LinkType,
-    val url: String
+    @SerialName("created_at")
+    val createdAt: String,
+    @SerialName("updated_at")
+    val updatedAt: String
 ) {
     companion object {
         const val ENTITY_NAME = "link"

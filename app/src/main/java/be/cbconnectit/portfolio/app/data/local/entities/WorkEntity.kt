@@ -5,16 +5,24 @@ import androidx.room.Entity
 import androidx.room.Junction
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import kotlinx.serialization.SerialName
 
 @Entity(WorkEntity.ENTITY_NAME)
 data class WorkEntity(
     @PrimaryKey
     val id: String,
-    val bannerImage: String,
-    val image: String,
+    @SerialName("banner_image_url")
+    val bannerImageUrl: String,
+    @SerialName("image_url")
+    val imageUrl: String,
     val title: String,
+    @SerialName("short_description")
     val shortDescription: String,
     val description: String,
+    @SerialName("created_at")
+    val createdAt: String,
+    @SerialName("updated_at")
+    val updatedAt: String
 ) {
     companion object {
         const val ENTITY_NAME = "work"
@@ -24,7 +32,16 @@ data class WorkEntity(
 data class WorkWithTags(
     @Embedded
     val work: WorkEntity,
-    @Relation(parentColumn = "id", entityColumn = "workId")
+    @Relation(
+        parentColumn = "id",
+        entity = LinkEntity::class,
+        entityColumn = "id",
+        associateBy = Junction(
+            value = WorkLinkCrossRefEntity::class,
+            parentColumn = WorkLinkCrossRefEntity.COLUMN_ID_WORK,
+            entityColumn = WorkLinkCrossRefEntity.COLUMN_ID_LINK
+        )
+    )
     val links: List<LinkEntity>,
     @Relation(
         parentColumn = "id",
