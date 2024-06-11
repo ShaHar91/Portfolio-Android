@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import be.cbconnectit.portfolio.app.data.local.entities.TestimonialEntity
+import be.cbconnectit.portfolio.app.data.local.entities.TestimonialWithRelations
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -14,5 +15,5 @@ interface TestimonialDao {
     suspend fun insertMany(testimonials: List<TestimonialEntity>)
 
     @Query("SELECT * FROM testimonial")
-    fun findAllFlow(): Flow<List<TestimonialEntity>>
+    fun findAllFlow(): Flow<List<TestimonialWithRelations>>
 }

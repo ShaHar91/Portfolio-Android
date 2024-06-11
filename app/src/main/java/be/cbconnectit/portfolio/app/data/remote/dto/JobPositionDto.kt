@@ -7,16 +7,9 @@ import kotlinx.serialization.Serializable
 
 @Parcelize
 @Serializable
-data class TestimonialDto(
+data class JobPositionDto(
     val id: String = "",
-    @SerialName("image_url")
-    val imageUrl: String = "",
-    @SerialName("full_name")
-    val fullName: String = "",
-    val company: CompanyDto = CompanyDto(),
-    @SerialName("job_position")
-    val jobPosition: JobPositionDto = JobPositionDto(),
-    val review: String = "",
+    val name: String = "",
     @SerialName("created_at")
     val createdAt: String = "",
     @SerialName("updated_at")

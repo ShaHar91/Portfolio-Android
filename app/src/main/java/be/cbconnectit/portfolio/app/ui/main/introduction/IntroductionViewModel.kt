@@ -67,16 +67,16 @@ class IntroductionViewModel(
         _state.update { it.copy(isLoading = true) }
 
         val servicesAsync = async { serviceRepo.fetchAllServices() }
-        val experiencesAsync = async { experienceRepo.fetchAllExperiences() }
+//        val experiencesAsync = async { experienceRepo.fetchAllExperiences() }
         val worksAsync = async { workRepository.fetchAllWorks() }
         val testimonialsAsync = async { testimonialRepository.fetchAllTestimonials() }
 
         val services = servicesAsync.await()
-        val experiences = experiencesAsync.await()
+//        val experiences = experiencesAsync.await()
         val works = worksAsync.await()
         val testimonials = testimonialsAsync.await()
 
-        val calls = listOf(services, experiences, works, testimonials)
+        val calls = listOf(services, works, testimonials)
         if (calls.any { it.isFailure }) {
             calls.first { it.isFailure }.exceptionOrNull()?.let {
                 it.printStackTrace()
