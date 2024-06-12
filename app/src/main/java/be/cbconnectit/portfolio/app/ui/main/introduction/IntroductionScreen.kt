@@ -78,6 +78,7 @@ fun IntroductionScreen(
 
                 IntroductionUiEvent.OpenExperienceList -> navController.navigate(ExperienceScreenDestination)
                 IntroductionUiEvent.OpenPortfolio -> navController.navigate(PortfolioScreenDestination)
+                else -> Unit //TODO: add the other Service destinations!!!
             }
         }
     }
@@ -130,9 +131,13 @@ fun IntroductionScreenContent(
 
                 Spacer(modifier = Modifier.height(62.dp))
 
-                ServiceSection(state.services) {
-                    onEvent(IntroductionEvent.OpenServiceList)
-                }
+                ServiceSection(
+                    state.services,
+                    headerActionClicked = {
+                        onEvent(IntroductionEvent.OpenServiceList)
+                    },
+                    serviceActionClicked = { onEvent(IntroductionEvent.OpenServiceDetail(it))}
+                )
 
                 Spacer(modifier = Modifier.height(62.dp))
 

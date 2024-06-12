@@ -41,7 +41,8 @@ import be.cbconnectit.portfolio.app.data.local.utils.Converters
         JobPositionEntity::class,
         ExperienceTagCrossRefEntity::class
     ],
-    version = 6
+    version = 7,
+    exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class PortfolioDatabase : RoomDatabase() {
