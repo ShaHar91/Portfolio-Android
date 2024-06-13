@@ -1,8 +1,13 @@
 package be.cbconnectit.portfolio.app.data.local.entities
 
 import androidx.room.Entity
+import androidx.room.Index
 
-@Entity(primaryKeys = [WorkTagCrossRefEntity.COLUMN_ID_TAG, WorkTagCrossRefEntity.COLUMN_ID_WORK], tableName = WorkTagCrossRefEntity.ENTITY_NAME)
+@Entity(
+    primaryKeys = [WorkTagCrossRefEntity.COLUMN_ID_TAG, WorkTagCrossRefEntity.COLUMN_ID_WORK],
+    indices = [Index(unique = true, value = [WorkTagCrossRefEntity.COLUMN_ID_WORK, WorkTagCrossRefEntity.COLUMN_ID_TAG])],
+    tableName = WorkTagCrossRefEntity.ENTITY_NAME
+)
 data class WorkTagCrossRefEntity(
     val workId: String,
     val tagId: String

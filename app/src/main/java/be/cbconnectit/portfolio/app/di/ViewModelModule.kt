@@ -6,6 +6,8 @@ import be.cbconnectit.portfolio.app.ui.main.components.ComponentsViewModel
 import be.cbconnectit.portfolio.app.ui.main.introduction.IntroductionViewModel
 import be.cbconnectit.portfolio.app.ui.main.introduction.experience.ExperienceViewModel
 import be.cbconnectit.portfolio.app.ui.main.introduction.portfolio.PortfolioViewModel
+import be.cbconnectit.portfolio.app.ui.main.introduction.services.ServicesViewModel
+import be.cbconnectit.portfolio.app.ui.main.introduction.services.serviceDetail.ServiceDetailViewModel
 import be.cbconnectit.portfolio.app.ui.main.settings.SettingsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
@@ -18,4 +20,6 @@ val viewModelModule = module {
     viewModelOf(::ExperienceViewModel)
     viewModelOf(::ComponentsViewModel)
     viewModelOf(::SettingsViewModel)
+    viewModelOf(::ServicesViewModel)
+    viewModelOf(::ServiceDetailViewModel)
 }

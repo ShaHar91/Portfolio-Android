@@ -36,6 +36,8 @@ import be.cbconnectit.portfolio.app.extensions.startIntentMail
 import be.cbconnectit.portfolio.app.extensions.startWeb
 import be.cbconnectit.portfolio.app.ui.main.destinations.ExperienceScreenDestination
 import be.cbconnectit.portfolio.app.ui.main.destinations.PortfolioScreenDestination
+import be.cbconnectit.portfolio.app.ui.main.destinations.ServiceDetailScreenDestination
+import be.cbconnectit.portfolio.app.ui.main.destinations.ServicesScreenDestination
 import be.cbconnectit.portfolio.app.ui.main.introduction.sections.AboutMeSection
 import be.cbconnectit.portfolio.app.ui.main.introduction.sections.ExperienceSection
 import be.cbconnectit.portfolio.app.ui.main.introduction.sections.MainSection
@@ -77,7 +79,9 @@ fun IntroductionScreen(
                 }
 
                 IntroductionUiEvent.OpenExperienceList -> navController.navigate(ExperienceScreenDestination)
-                IntroductionUiEvent.OpenPortfolio -> navController.navigate(PortfolioScreenDestination)
+                IntroductionUiEvent.OpenPortfolio -> navController.navigate(PortfolioScreenDestination(arrayOf()))
+                is IntroductionUiEvent.OpenServiceDetail -> navController.navigate(ServiceDetailScreenDestination(serviceId = event.serviceId))
+                IntroductionUiEvent.OpenServiceList -> navController.navigate(ServicesScreenDestination)
             }
         }
     }
@@ -130,9 +134,13 @@ fun IntroductionScreenContent(
 
                 Spacer(modifier = Modifier.height(62.dp))
 
-                ServiceSection(state.services) {
-                    onEvent(IntroductionEvent.OpenServiceList)
-                }
+                ServiceSection(
+                    state.services,
+                    headerActionClicked = {
+                        onEvent(IntroductionEvent.OpenServiceList)
+                    },
+                    serviceActionClicked = { onEvent(IntroductionEvent.OpenServiceDetail(it))}
+                )
 
                 Spacer(modifier = Modifier.height(62.dp))
 

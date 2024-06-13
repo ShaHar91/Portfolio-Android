@@ -99,7 +99,8 @@ class IntroductionViewModel(
         when (event) {
             is IntroductionEvent.OpenSocialLink -> _eventFlow.send(IntroductionUiEvent.OpenSocialLink(event.link))
             is IntroductionEvent.OpenMailClient -> _eventFlow.send(IntroductionUiEvent.OpenMailClient)
-            is IntroductionEvent.OpenServiceList -> showSnackbar("In Development!")
+            is IntroductionEvent.OpenServiceList -> _eventFlow.send(IntroductionUiEvent.OpenServiceList)
+            is IntroductionEvent.OpenServiceDetail -> _eventFlow.send(IntroductionUiEvent.OpenServiceDetail(event.serviceId))
             is IntroductionEvent.OpenPortfolioList -> _eventFlow.send(IntroductionUiEvent.OpenPortfolio)
             is IntroductionEvent.OpenTestimonialsList -> showSnackbar("In Development!")
             is IntroductionEvent.OpenExperiencesList -> _eventFlow.send(IntroductionUiEvent.OpenExperienceList)
@@ -111,6 +112,7 @@ sealed class IntroductionEvent {
     data class OpenSocialLink(val link: Link) : IntroductionEvent()
     data object OpenMailClient : IntroductionEvent()
     data object OpenServiceList : IntroductionEvent()
+    data class OpenServiceDetail(val serviceId: String) : IntroductionEvent()
     data object OpenPortfolioList : IntroductionEvent()
     data object OpenTestimonialsList : IntroductionEvent()
     data object OpenExperiencesList : IntroductionEvent()
@@ -131,4 +133,6 @@ sealed class IntroductionUiEvent {
     data object OpenMailClient : IntroductionUiEvent()
     data object OpenExperienceList : IntroductionUiEvent()
     data object OpenPortfolio : IntroductionUiEvent()
+    data object OpenServiceList : IntroductionUiEvent()
+    data class OpenServiceDetail(val serviceId: String) : IntroductionUiEvent()
 }

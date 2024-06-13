@@ -18,4 +18,8 @@ interface ServiceDao {
     @Transaction
     @Query("SELECT * FROM service WHERE parent_service_id IS :parentServiceId")
     fun findAllFlow(parentServiceId: String? = null): Flow<List<ServiceWithTags>>
+
+    @Transaction
+    @Query("SELECT * FROM service WHERE id IS :parentServiceId")
+    fun findById(parentServiceId: String): Flow<ServiceWithTags?>
 }

@@ -41,4 +41,7 @@
     <string name="ok">OK</string>
     <string name="unsupported_feature_dynamic_colors_dialog_body">Dynamic colors (a.k.a. Material You) is only available for Android phones with version 12 or higher. If possible, please update to use this setting.</string>
     <string name="experiences">Experiences</string>
+    <string name="my_services">My Services</string>
+    <string name="learn_more">Learn more</string>
+    <string name="my_services_description">Over the years, my knowledge and repertoire has grown and I can be deployed in multiple areas. I am always willing to learn and strive to push my limits. Besides implementing an existing idea, I also like to think along with the customer for new ideas and features.\n\nMy services include, but do not limit, to the following:</string>
 </resources>
