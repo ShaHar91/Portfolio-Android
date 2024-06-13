@@ -11,6 +11,7 @@ import be.cbconnectit.portfolio.app.data.remote.api.ServiceApi
 import be.cbconnectit.portfolio.app.data.utils.TransactionProvider
 import be.cbconnectit.portfolio.app.domain.model.Service
 import be.cbconnectit.portfolio.app.domain.repository.ServiceRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class ServiceRepositoryImpl(
@@ -40,5 +41,17 @@ class ServiceRepositoryImpl(
         }
     }
 
-    override fun findAllServices(parentServiceId: String?) = serviceDao.findAllFlow(parentServiceId).map { it.map { serviceWithTags -> serviceWithTags.service.toService().copy(tag = serviceWithTags.tag?.toTag()) } }
+    override fun findAllServices(parentServiceId: String?): Flow<List<Service>> =
+        serviceDao.findAllFlow(parentServiceId)
+            .map {
+                it.map { serviceWithTags ->
+                    serviceWithTags.service.toService().copy(tag = serviceWithTags.tag?.toTag())
+                }
+            }
+
+    override fun findParentServiceName(parentServiceId: String): Flow<Service?> =
+        serviceDao.findById(parentServiceId)
+            .map { serviceWithTags ->
+                serviceWithTags?.service?.toService()?.copy(tag = serviceWithTags.tag?.toTag())
+            }
 }

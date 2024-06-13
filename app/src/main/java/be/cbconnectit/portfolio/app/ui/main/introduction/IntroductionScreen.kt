@@ -36,6 +36,8 @@ import be.cbconnectit.portfolio.app.extensions.startIntentMail
 import be.cbconnectit.portfolio.app.extensions.startWeb
 import be.cbconnectit.portfolio.app.ui.main.destinations.ExperienceScreenDestination
 import be.cbconnectit.portfolio.app.ui.main.destinations.PortfolioScreenDestination
+import be.cbconnectit.portfolio.app.ui.main.destinations.ServiceDetailScreenDestination
+import be.cbconnectit.portfolio.app.ui.main.destinations.ServicesScreenDestination
 import be.cbconnectit.portfolio.app.ui.main.introduction.sections.AboutMeSection
 import be.cbconnectit.portfolio.app.ui.main.introduction.sections.ExperienceSection
 import be.cbconnectit.portfolio.app.ui.main.introduction.sections.MainSection
@@ -77,8 +79,9 @@ fun IntroductionScreen(
                 }
 
                 IntroductionUiEvent.OpenExperienceList -> navController.navigate(ExperienceScreenDestination)
-                IntroductionUiEvent.OpenPortfolio -> navController.navigate(PortfolioScreenDestination)
-                else -> Unit //TODO: add the other Service destinations!!!
+                IntroductionUiEvent.OpenPortfolio -> navController.navigate(PortfolioScreenDestination(arrayOf()))
+                is IntroductionUiEvent.OpenServiceDetail -> navController.navigate(ServiceDetailScreenDestination(serviceId = event.serviceId))
+                IntroductionUiEvent.OpenServiceList -> navController.navigate(ServicesScreenDestination)
             }
         }
     }

@@ -1,5 +1,6 @@
 package be.cbconnectit.portfolio.app.ui.main.introduction.portfolio
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import be.cbconnectit.portfolio.app.domain.model.Link
 import be.cbconnectit.portfolio.app.domain.model.Work
@@ -16,7 +17,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class PortfolioViewModel(
-    private val workRepository: WorkRepository
+    private val workRepository: WorkRepository,
+    tagIds: Array<String>
 ) : BaseComposeViewModel() {
 
     private val _state = MutableStateFlow(PortfolioState())
@@ -27,7 +29,6 @@ class PortfolioViewModel(
 
     init {
         fetchAllData()
-
 
         workRepository.findAllWorks().onEach { works ->
             _state.update { it.copy(projects = works) }
@@ -42,7 +43,7 @@ class PortfolioViewModel(
 
         val works = worksAsync.await()
 
-        val calls = listOf(works, )
+        val calls = listOf(works)
         if (calls.any { it.isFailure }) {
             calls.first { it.isFailure }.exceptionOrNull()?.let {
                 it.printStackTrace()
@@ -70,5 +71,5 @@ data class PortfolioState(
 )
 
 sealed class PortfolioUiEvent {
-    data class OpenSocialLink(val link:Link) : PortfolioUiEvent()
+    data class OpenSocialLink(val link: Link) : PortfolioUiEvent()
 }

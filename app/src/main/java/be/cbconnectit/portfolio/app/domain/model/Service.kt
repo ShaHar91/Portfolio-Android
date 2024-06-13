@@ -1,7 +1,6 @@
 package be.cbconnectit.portfolio.app.domain.model
 
 import androidx.annotation.DrawableRes
-import androidx.compose.runtime.Composable
 import androidx.recyclerview.widget.DiffUtil
 import be.cbconnectit.portfolio.app.R
 
@@ -32,13 +31,23 @@ data class Service(
 }
 
 @DrawableRes
-@Composable
 fun Service.getServiceTypeIcon(): Int? {
     return when {
         title.lowercase().startsWith("mobile") -> R.drawable.ic_smartphone
         title.lowercase().startsWith("web") -> R.drawable.ic_frontend
         title.lowercase().startsWith("backend") -> R.drawable.ic_backend
         title.lowercase().startsWith("tutoring") -> R.drawable.ic_tutoring
+        else -> null
+    }
+}
+
+@DrawableRes
+fun Service.typeImage(): Int? {
+    return when {
+        title.lowercase().startsWith("mobile") -> R.drawable.img_services_mobile
+        title.lowercase().startsWith("web") -> R.drawable.img_services_web
+        title.lowercase().startsWith("backend") -> R.drawable.img_services_backend
+        title.lowercase().startsWith("tutoring") -> R.drawable.img_services_tutoring
         else -> null
     }
 }

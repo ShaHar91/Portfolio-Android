@@ -7,4 +7,6 @@ interface ServiceRepository {
     suspend fun fetchAllServices(): Result<List<Service>>
 
     fun findAllServices(parentServiceId: String? = null): Flow<List<Service>>
+
+    fun findParentServiceName(parentServiceId: String): Flow<Service?>
 }

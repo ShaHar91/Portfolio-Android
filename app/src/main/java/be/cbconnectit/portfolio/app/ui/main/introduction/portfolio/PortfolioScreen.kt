@@ -39,12 +39,16 @@ import be.cbconnectit.portfolio.app.ui.theme.PortfolioTheme
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 @Destination
 @Composable
 fun PortfolioScreen(
     navController: NavController,
-    viewModel: PortfolioViewModel = koinViewModel()
+    tagIds: Array<String>,
+    viewModel: PortfolioViewModel = koinViewModel {
+        parametersOf(tagIds)
+    }
 ) {
     val state by viewModel.state.collectAsState()
     val localContext = LocalContext.current
