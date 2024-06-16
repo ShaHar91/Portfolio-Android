@@ -33,7 +33,7 @@ data class TestimonialWithRelations(
     @Embedded
     val testimonial: TestimonialEntity,
     @Relation(parentColumn = "company_id", entityColumn = "id")
-    val company: CompanyEntity,
+    val company: CompanyEntity?,
     @Relation(parentColumn = "job_position_id", entityColumn = "id")
     val jobPosition: JobPositionEntity,
 )
