@@ -199,4 +199,5 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
 
     implementation("com.github.jeziellago:compose-markdown:0.5.0")
+    implementation("com.github.GIGAMOLE:ComposeCollapsingToolbar:1.0.8")
 }
