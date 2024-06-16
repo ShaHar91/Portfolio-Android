@@ -25,10 +25,11 @@ import coil.compose.AsyncImage
 fun ServiceHeader(
     title: String,
     text: String,
+    modifier: Modifier = Modifier,
     imageUrl: String? = null
 ) {
     Box(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {
         AsyncImage(
