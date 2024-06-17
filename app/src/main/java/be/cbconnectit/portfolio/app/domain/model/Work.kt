@@ -30,8 +30,8 @@ data class Work(
 
 fun Work.Companion.previewData() = Work(
     "1",
-    "https://raw.githubusercontent.com/ShaHar91/Portfolio/master/public/portfolio1.png",
-    "https://raw.githubusercontent.com/ShaHar91/Portfolio/master/public/project_image.png",
+    "",
+    "",
     "Android Core",
     "Created this library in order to streamline and simplify the setup of new projects. Instead of copying a lot of classes and reimplementing it differently each time a single dependency was all we needed.",
     """Created this library in order to streamline and simplify the setup of new projects. Instead of copying a lot of classes and reimplementing it differently each time, a single dependency was all we needed.

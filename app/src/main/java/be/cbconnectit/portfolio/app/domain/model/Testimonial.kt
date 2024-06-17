@@ -45,7 +45,7 @@ data class Testimonial(
 
 fun Testimonial.Companion.previewData() = Testimonial(
     "1",
-    "https://raw.githubusercontent.com/ShaHar91/Portfolio/master/public/avatar4.png",
+    "",
     "Shrek",
     Company("", "C.B. Connect I.T.", emptyList(), "", ""),
     JobPosition("", "Project Manager", "", ""),
