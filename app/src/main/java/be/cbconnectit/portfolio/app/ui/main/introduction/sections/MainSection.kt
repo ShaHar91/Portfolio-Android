@@ -1,18 +1,25 @@
 package be.cbconnectit.portfolio.app.ui.main.introduction.sections
 
 import android.content.res.Configuration
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -80,31 +87,31 @@ fun MainSection(
             onClick = onClick
         )
 
-//        @Composable
-//        fun MainImage(modifier: Modifier = Modifier, visible: Boolean = true) {
-//            Image(
-//                modifier = modifier
-//                    .alpha(if (visible) 1f else 0f)
-//                    .fillMaxWidth(),
-//                painter = painterResource(id = R.drawable.main_image),
-//                contentDescription = "Main image"
-//            )
-//        }
-//
-//        Box(
-//            modifier = Modifier
-//                .widthIn(max = 400.dp)
-//                .padding(horizontal = 16.dp)
-//                .offset(y = (-20).dp),
-//            contentAlignment = Alignment.BottomCenter
-//        ) {
-//            ElevatedCard {
-//                // internal image is needed otherwise the height would not be drawn...
-//                MainImage(Modifier.padding(horizontal = 30.dp), visible = false)
-//            }
-//
-//            MainImage()
-//        }
+        @Composable
+        fun MainImage(modifier: Modifier = Modifier, visible: Boolean = true) {
+            Image(
+                modifier = modifier
+                    .alpha(if (visible) 1f else 0f)
+                    .fillMaxWidth(),
+                painter = painterResource(id = R.drawable.main_image),
+                contentDescription = "Main image"
+            )
+        }
+
+        Box(
+            modifier = Modifier
+                .widthIn(max = 400.dp)
+                .padding(horizontal = 16.dp)
+                .offset(y = (-20).dp),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            ElevatedCard {
+                // internal image is needed otherwise the height would not be drawn...
+                MainImage(Modifier.padding(horizontal = 30.dp), visible = false)
+            }
+
+            MainImage()
+        }
     }
 }
 
