@@ -42,8 +42,8 @@ class TestimonialRepositoryImpl(
                 val jobPositions = mutableListOf<JobPositionEntity>()
 
                 testimonials.forEach { item ->
-                    links.addAll(item.company.links.map { it.toLinkEntity() })
-                    companies.add(item.company.toCompanyEntity())
+                    item.company?.links?.map { it.toLinkEntity() }?.let(links::addAll)
+                    item.company?.toCompanyEntity()?.let(companies::add)
                     jobPositions.add(item.jobPosition.toJobPositionEntity())
                 }
 
@@ -60,7 +60,7 @@ class TestimonialRepositoryImpl(
 
     override fun findAllTestimonials() = testimonialDao.findAllFlow().map { list ->
         list.map { testimonialWithRelations ->
-            val company = testimonialWithRelations.company.toCompany()
+            val company = testimonialWithRelations.company?.toCompany()
             val jobPosition = testimonialWithRelations.jobPosition.toJobPosition()
             testimonialWithRelations.testimonial.toTestimonial().copy(company = company, jobPosition = jobPosition)
         }

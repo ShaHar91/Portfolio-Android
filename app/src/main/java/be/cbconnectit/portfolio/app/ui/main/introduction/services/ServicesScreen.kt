@@ -58,7 +58,7 @@ fun ServicesScreen(
 ) {
     val state by viewModel.state.collectAsState()
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(key1 = viewModel.eventFlow) {
         viewModel.eventFlow.collectLatest { event ->
             when (event) {
                 is ServicesUiEvent.OpenServiceDetail -> navController.navigate(ServiceDetailScreenDestination(event.serviceId))

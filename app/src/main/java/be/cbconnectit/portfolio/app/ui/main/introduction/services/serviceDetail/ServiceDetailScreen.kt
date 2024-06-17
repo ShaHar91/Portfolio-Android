@@ -17,6 +17,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,7 +55,7 @@ fun ServiceDetailScreen(
 ) {
     val state by viewModel.state.collectAsState()
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(key1 = viewModel.eventFlow) {
         viewModel.eventFlow.collectLatest { event ->
             when (event) {
                 is ServiceDetailUiEvent.OpenProjectByTag -> navController.navigate(PortfolioScreenDestination(arrayOf(event.tagId)))
@@ -75,9 +78,15 @@ fun ServiceDetailScreenContent(
     createSnackBarHost: @Composable () -> Unit = {},
 ) {
     val toolbarState = rememberCollapsingToolbarScaffoldState()
+    var hasEffectRun by rememberSaveable { mutableStateOf(false) }
 
-    LaunchedEffect(key1 = state.parentService?.bannerDescription) {
-        toolbarState.expand()
+    LaunchedEffect(key1 = state.parentService?.bannerDescription != null) {
+        if (hasEffectRun) return@LaunchedEffect
+
+        if (state.parentService?.bannerDescription != null) {
+            toolbarState.expand()
+            hasEffectRun = true
+        }
     }
 
     CollapsingToolbarScaffold(
