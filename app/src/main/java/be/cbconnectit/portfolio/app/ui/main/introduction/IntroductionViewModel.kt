@@ -34,7 +34,7 @@ class IntroductionViewModel(
 
     private val _state = MutableStateFlow(
         IntroductionState(
-            socialLinks = Social.entries.map { Link(type = it.type, url=  it.link) },
+            socialLinks = Social.entries.map { Link(type = it.type, url = it.link) },
             experienceInYears = getUpdateExperienceInYears()
         )
     )
@@ -55,7 +55,9 @@ class IntroductionViewModel(
         }.launchIn(viewModelScope)
 
         workRepository.findAllWorks().onEach { works ->
-            _state.update { it.copy(projects = works) }
+            _state.update {
+                it.copy(projects = works, selectedProject = it.selectedProject ?: works.firstOrNull())
+            }
         }.launchIn(viewModelScope)
 
         testimonialRepository.findAllTestimonials().onEach { testimonials ->
@@ -104,6 +106,9 @@ class IntroductionViewModel(
             is IntroductionEvent.OpenPortfolioList -> _eventFlow.send(IntroductionUiEvent.OpenPortfolio)
             is IntroductionEvent.OpenTestimonialsList -> showSnackbar("In Development!")
             is IntroductionEvent.OpenExperiencesList -> _eventFlow.send(IntroductionUiEvent.OpenExperienceList)
+            is IntroductionEvent.UpdateSelectedWork -> _state.update {
+                it.copy(selectedProject = event.work)
+            }
         }
     }
 }
@@ -114,6 +119,7 @@ sealed class IntroductionEvent {
     data object OpenServiceList : IntroductionEvent()
     data class OpenServiceDetail(val serviceId: String) : IntroductionEvent()
     data object OpenPortfolioList : IntroductionEvent()
+    data class UpdateSelectedWork(val work: Work) : IntroductionEvent()
     data object OpenTestimonialsList : IntroductionEvent()
     data object OpenExperiencesList : IntroductionEvent()
 }
@@ -125,7 +131,8 @@ data class IntroductionState(
     val services: List<Service> = emptyList(),
     val projects: List<Work> = emptyList(),
     val testimonials: List<Testimonial> = emptyList(),
-    val experiences: List<Experience> = emptyList()
+    val experiences: List<Experience> = emptyList(),
+    val selectedProject: Work? = null
 )
 
 sealed class IntroductionUiEvent {

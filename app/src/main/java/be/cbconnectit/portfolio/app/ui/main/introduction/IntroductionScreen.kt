@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
@@ -139,14 +140,21 @@ fun IntroductionScreenContent(
                     headerActionClicked = {
                         onEvent(IntroductionEvent.OpenServiceList)
                     },
-                    serviceActionClicked = { onEvent(IntroductionEvent.OpenServiceDetail(it))}
+                    serviceActionClicked = { onEvent(IntroductionEvent.OpenServiceDetail(it)) }
                 )
 
                 Spacer(modifier = Modifier.height(62.dp))
 
-                PortfolioSection(state.projects) {
-                    onEvent(IntroductionEvent.OpenPortfolioList)
-                }
+                PortfolioSection(
+                    projects = state.projects,
+                    selectedWork = state.selectedProject,
+                    onWorkClicked = {
+                        onEvent(IntroductionEvent.UpdateSelectedWork(it))
+                    },
+                    actionClicked = {
+                        onEvent(IntroductionEvent.OpenPortfolioList)
+                    }
+                )
 
                 Spacer(modifier = Modifier.height(62.dp))
 
